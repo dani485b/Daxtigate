@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 public class ImagePanel extends JPanel{
     boolean drawImg = false;
     private BufferedImage image;
-    private int yMain = 0;
     ImagePanel(String path) {
         try {
             image = ImageIO.read(new File(path));
@@ -20,29 +19,15 @@ public class ImagePanel extends JPanel{
         }
     }
 
-    public void setyMain(int yMain) {
-        this.yMain = yMain;
-    }
-
     private static final int sizeRectMax = 64;
     private static final int sizeRectMin = 48;
     private int sizeRectCurrent = sizeRectMin;
 
     private static final int speed = 1;
-    private int offsetY = 0;
-
-    public void setOffsetY(int offsetY) {
-        this.offsetY = offsetY;
-    }
-
-    public int getOffsetY() {
-        return offsetY;
-    }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        setBounds(getBounds().x, yMain+offsetY, getBounds().width, getBounds().height);
 
         if (drawImg) {
             if (sizeRectCurrent < sizeRectMax) {
