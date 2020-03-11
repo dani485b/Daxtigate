@@ -22,21 +22,29 @@ public class PackageRow extends JPanel {
         this.elementCount = elementCount;
 
         setOpaque(false);
-        setBounds(0,elementCount*70, 2000,70);
+        setBounds(0,elementCount*70, 2000, MainPackagePanel.ROWHEIGHT);
         setLayout(null);
 
         ImagePanel iconPanel = new ImagePanel("icons/"+packageName+".png");
         add(iconPanel);
 
-        addMouseWheelListener(e -> {
+        /*addMouseWheelListener(e -> {
             MainPackagePanel mpp = ((MainPackagePanel)e.getComponent().getParent());
             mpp.setScrollOffsetY(mpp.getScrollOffsetY()+e.getWheelRotation()*-10);
 
             for (Component component : (e.getComponent().getParent()).getComponents()) {
-                component.repaint();
                 component.revalidate();
+                component.repaint();
             }
-        });
+        });*/
+    }
+
+    public int getElementCount() {
+        return elementCount;
+    }
+
+    public void updateLocationY(){
+        setLocation(0, (int) (elementCount*70+((MainPackagePanel)getParent()).getScrollOffsetY()));
     }
 
     @Override
@@ -48,14 +56,13 @@ public class PackageRow extends JPanel {
         int squareHeight = 32;
         int cornerSize = 10;
 
-        setLocation(0, (int) (elementCount*70+((MainPackagePanel)getParent()).getScrollOffsetY()));;
-
-        g2.setPaint(new Color(100, 100, 100));
+        g2.setPaint(new Color(90, 90, 90));
         g2.fill(new Rectangle2D.Double(0,0, getBounds().height, getBounds().height));
 
         g2.setPaint(new Color(143, 20, 130));
         g2.fill(new RoundRectangle2D.Double(ICON_SIZE+cornerSize+10, squareHeight/2, squareWidth, squareHeight, cornerSize, cornerSize));
 
         super.paintComponent(g);
+        //System.out.println("ElemCount: " + elementCount);
     }
 }
