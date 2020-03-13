@@ -40,7 +40,8 @@ public class MainPackagePanel extends JPanel {
     }
 
     void setScrollOffsetY(float scrollOffsetY) {
-        this.scrollOffsetY = scrollOffsetY;
+        float heightMax = getComponentCount()*ROWHEIGHT;
+        this.scrollOffsetY = Math.max(Math.min(scrollOffsetY, 0), -heightMax);
     }
 
     float getScrollOffsetY() {

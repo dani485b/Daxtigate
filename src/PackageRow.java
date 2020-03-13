@@ -1,15 +1,6 @@
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.Random;
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class PackageRow extends JPanel {
@@ -25,18 +16,8 @@ public class PackageRow extends JPanel {
         setBounds(0,elementCount*70, 2000, MainPackagePanel.ROWHEIGHT);
         setLayout(null);
 
-        ImagePanel iconPanel = new ImagePanel("icons/"+packageName+".png");
+        PackageIconPanel iconPanel = new PackageIconPanel(packageName);
         add(iconPanel);
-
-        /*addMouseWheelListener(e -> {
-            MainPackagePanel mpp = ((MainPackagePanel)e.getComponent().getParent());
-            mpp.setScrollOffsetY(mpp.getScrollOffsetY()+e.getWheelRotation()*-10);
-
-            for (Component component : (e.getComponent().getParent()).getComponents()) {
-                component.revalidate();
-                component.repaint();
-            }
-        });*/
     }
 
     public int getElementCount() {
@@ -63,6 +44,5 @@ public class PackageRow extends JPanel {
         g2.fill(new RoundRectangle2D.Double(ICON_SIZE+cornerSize+10, squareHeight/2, squareWidth, squareHeight, cornerSize, cornerSize));
 
         super.paintComponent(g);
-        //System.out.println("ElemCount: " + elementCount);
     }
 }

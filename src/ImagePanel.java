@@ -1,8 +1,6 @@
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
-import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +12,7 @@ public class ImagePanel extends JPanel{
     private BufferedImage image;
     ImagePanel(String path) {
         setOpaque(false);
-        setBounds(0, 0, PackageRow.ICON_SIZE, PackageRow.ICON_SIZE);
+        setBounds((MainPackagePanel.ROWHEIGHT-PackageRow.ICON_SIZE)/2, 0, PackageRow.ICON_SIZE, PackageRow.ICON_SIZE);
         addMouseListener(new MyImagePanelMouseListener());
 
         try {
@@ -24,7 +22,7 @@ public class ImagePanel extends JPanel{
         }
     }
 
-    private static final int sizeRectMax = 64;
+    private static final int sizeRectMax = PackageRow.ICON_SIZE;
     private static final int sizeRectMin = 48;
     private int sizeRectCurrent = sizeRectMin;
 
@@ -46,8 +44,8 @@ public class ImagePanel extends JPanel{
             }
         }
 
-        int currentX = (getWidth()-sizeRectCurrent)/2;
-        int currentY = (getWidth()-sizeRectCurrent)/2;
+        int currentX = (getHeight()-sizeRectCurrent)/2;
+        int currentY = (getHeight()-sizeRectCurrent)/2;
 
         g.drawImage(image, currentX, currentY, sizeRectCurrent, sizeRectCurrent, this);
     }
