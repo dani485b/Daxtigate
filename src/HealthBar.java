@@ -11,7 +11,7 @@ public class HealthBar extends JPanel {
         setBackground(new Color(100, 100, 100));
 
         int width = 2000;
-        int height = 50;
+        int height = MainPackagePanel.ROWHEIGHT;
         setMaximumSize(new Dimension(width,height));
         setPreferredSize(new Dimension(width,height));
         setMinimumSize(new Dimension(width,height));

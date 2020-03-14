@@ -13,6 +13,16 @@ class PackageIconPanel extends ImagePanel {
     PackageIconPanel(String packageName) {
         super("icons/"+packageName+".png");
         this.packageName = packageName;
+        setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weighty = 0.4;   //request any extra vertical space
+        c.anchor = GridBagConstraints.PAGE_END; //bottom of space
+        c.insets = new Insets(15,0,0,0);  //top padding
+        c.gridx = 1;       //aligned with button 2
+        c.gridwidth = 2;   //2 columns wide
+        c.gridy = 2;       //third row
+        add(new CenteredText(packageName), c);
     }
 
     private static final int sizeRectMax = 5;
@@ -33,65 +43,93 @@ class PackageIconPanel extends ImagePanel {
             if (sizeRectCurrent < sizeRectMax) {
                 sizeRectCurrent += speed;
                 rect = new Rectangle2D.Double((getWidth()-sizeRectCurrent*11)/2, getHeight()-20, sizeRectCurrent*11, sizeRectCurrent*3.5f);
-                //Font font = new Font("Comic Sans MS", Font.BOLD, (int) (sizeRectCurrent*0.2));
-                //g.setFont(font);
 
                 textToDisplay = packageName;
-                //FontMetrics metrics = g.getFontMetrics(font);
-                // Determine the X coordinate for the text
-                //textX = (int) (rect.x + (rect.width - metrics.stringWidth(textToDisplay)) / 2f);
-                // Determine the Y coordinate for the text (note we add the ascent, as in java 2d 0 is top of the screen)
-                //textY = (int) (rect.y + ((rect.height - metrics.getHeight()) / 2f) + metrics.getAscent());
-
                 repaint();
             }
             Graphics2D g2 = (Graphics2D) g;
 
             g2.fillRoundRect((int)rect.x, (int)rect.y, (int)rect.width, (int)rect.height, 4,4);
             g2.setColor(new Color(255,255,255));
-            g2.drawString(textToDisplay, textX, textY);
         } else {
             if (sizeRectCurrent > sizeRectMin) {
                 sizeRectCurrent -= speed;
                 repaint();
             }
         }
+
+        CenteredText centeredText = ((CenteredText)getComponent(0));
+        centeredText.setDrawImg(drawImg);
+
     }
 }
 
 class CenteredText extends JLabel {
+    final String text;
     CenteredText(String text){
         super(text);
+        setFont(new Font("Comic Sans MS", Font.BOLD, sizeRectCurrent));
+        setForeground(new Color(230,230,230));
+        this.text = text;
     }
 
-    private boolean drawImg = false;
+    private boolean drawImg = true;
 
-    private static final int sizeRectMax = PackageRow.ICON_SIZE;
-    private static final int sizeRectMin = 48;
+    private static final int sizeRectMax = 14;
+    private static final int sizeRectMin = 3;
     private int sizeRectCurrent = sizeRectMin;
 
-    private static final int speed = 1;
+    private static final int speed = 2;
 
-    public void setDrawImg(boolean drawImg) {
+    void setDrawImg(boolean drawImg) {
         this.drawImg = drawImg;
+
+        if (drawImg) setVisible(true);
     }
+
+    float iter = 0;
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
         if (drawImg) {
+            setVisible(true);
             if (sizeRectCurrent < sizeRectMax) {
                 sizeRectCurrent += speed;
-                repaint();
+                setFont(new Font("Comic Sans MS", Font.BOLD, sizeRectCurrent));
             }
+
+            int showIndex = 0;
+            final int showAtTime = 6;
+
+            if (iter < 0) {
+                iter += 0.02f;
+                showIndex = 0;
+            } else if (iter < text.length()-showAtTime) {
+                iter += 0.01f;
+                showIndex = (int) iter;
+            } else {
+                if (iter < text.length()) {
+                    iter += 0.015f;
+                    showIndex = text.length()-showAtTime;
+                } else {
+                    iter = -5;
+                    showIndex = 0;
+                }
+            }
+
+            setText(text.substring(showIndex, showIndex+showAtTime));
+            repaint();
         } else {
             if (sizeRectCurrent > sizeRectMin) {
                 sizeRectCurrent -= speed;
+                setFont(new Font("Comic Sans MS", Font.BOLD, sizeRectCurrent));
                 repaint();
+            } else {
+                setVisible(false);
             }
         }
 
-        setFont(new Font("Comic Sans MS", Font.BOLD, sizeRectCurrent));
     }
 }
