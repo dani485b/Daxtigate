@@ -58,7 +58,7 @@ class CenteredText extends JLabel {
         super(text);
         setFont(new Font("Comic Sans MS", Font.BOLD, sizeRectCurrent));
         setForeground(new Color(230,230,230));
-        this.text = text;
+        this.text = text + "    ";
     }
 
     private boolean drawImg = true;
@@ -75,7 +75,7 @@ class CenteredText extends JLabel {
         if (drawImg) setVisible(true);
     }
 
-    private float iter = -5;
+    private float iter = 0;
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -88,24 +88,16 @@ class CenteredText extends JLabel {
                 setFont(new Font("Comic Sans MS", Font.BOLD, sizeRectCurrent));
             }
 
-            int showIndex = 0;
             final int showAtTime = 6;
 
-            if (iter < 0) {
-                iter += 0.02f;
-            } else if (iter < text.length()-showAtTime) {
-                iter += 0.01f;
-                showIndex = (int) iter;
-            } else {
-                if (iter < text.length()) {
-                    iter += 0.015f;
-                    showIndex = text.length()-showAtTime;
-                } else {
-                    iter = -5;
-                }
+            iter += 0.01;
+            StringBuilder setString = new StringBuilder();
+            for (int i = 0; i < showAtTime; i++) {
+                int j = (((int) iter) + i) % (text.length() - 1);
+                setString.append(text.toCharArray()[j]);
             }
 
-            setText(text.substring(showIndex, showIndex+showAtTime));
+            setText(setString.toString());
             repaint();
         } else {
             if (sizeRectCurrent > sizeRectMin) {
