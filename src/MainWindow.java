@@ -1,15 +1,10 @@
-import org.xml.sax.SAXException;
-
 import javax.swing.*;
-import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
-import java.awt.event.*;
-import java.io.IOException;
 
 class MainWindow {
     private JFrame frame;
-    static final int WIDTH = 1600;
-    static final int HEIGHT = 1000;
+    private static final int WIDTH = 1600;
+    private static final int HEIGHT = 1000;
 
     MainWindow() {
         frame = new JFrame("My First GUI");

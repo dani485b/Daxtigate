@@ -3,8 +3,6 @@ import org.xml.sax.SAXException;
 import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.RoundRectangle2D;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -39,7 +37,7 @@ public class MainPackagePanel extends JPanel {
         });
     }
 
-    void setScrollOffsetY(float scrollOffsetY) {
+    private void setScrollOffsetY(float scrollOffsetY) {
         float heightMax = getComponentCount()*ROWHEIGHT;
         heightMax -= getHeight();
         this.scrollOffsetY = Math.max(Math.min(scrollOffsetY, 0), -heightMax);

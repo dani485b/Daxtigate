@@ -4,12 +4,10 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.JPanel;
 
 public class PackageRow extends JPanel {
-    private final String packageName;
     static final int ICON_SIZE = 64;
     private int elementCount;
 
     PackageRow(String packageName, int elementCount) {
-        this.packageName = packageName;
         this.elementCount = elementCount;
 
         setOpaque(false);
@@ -20,11 +18,7 @@ public class PackageRow extends JPanel {
         add(iconPanel);
     }
 
-    public int getElementCount() {
-        return elementCount;
-    }
-
-    public void updateLocationY(){
+    void updateLocationY(){
         setLocation(0, (int) (elementCount*70+((MainPackagePanel)getParent()).getScrollOffsetY()));
     }
 
@@ -41,7 +35,7 @@ public class PackageRow extends JPanel {
         g2.fill(new Rectangle2D.Double(0,0, getBounds().height, getBounds().height));
 
         g2.setPaint(new Color(143, 20, 130));
-        g2.fill(new RoundRectangle2D.Double(ICON_SIZE+cornerSize+10, squareHeight/2, squareWidth, squareHeight, cornerSize, cornerSize));
+        g2.fill(new RoundRectangle2D.Double(ICON_SIZE+cornerSize+10, squareHeight/2f, squareWidth, squareHeight, cornerSize, cornerSize));
 
         super.paintComponent(g);
     }

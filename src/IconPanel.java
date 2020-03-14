@@ -1,18 +1,10 @@
-import org.w3c.dom.css.Rect;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 class PackageIconPanel extends ImagePanel {
-    String packageName;
     PackageIconPanel(String packageName) {
         super("icons/"+packageName+".png");
-        this.packageName = packageName;
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -30,9 +22,7 @@ class PackageIconPanel extends ImagePanel {
     private float sizeRectCurrent = sizeRectMin;
     private static final float speed = 0.2f;
 
-    private int textX = 0;
-    private int textY = 0;
-    private String textToDisplay = "";
+
     private Rectangle2D.Double rect;
 
     @Override
@@ -43,8 +33,6 @@ class PackageIconPanel extends ImagePanel {
             if (sizeRectCurrent < sizeRectMax) {
                 sizeRectCurrent += speed;
                 rect = new Rectangle2D.Double((getWidth()-sizeRectCurrent*11)/2, getHeight()-20, sizeRectCurrent*11, sizeRectCurrent*3.5f);
-
-                textToDisplay = packageName;
                 repaint();
             }
             Graphics2D g2 = (Graphics2D) g;
@@ -65,7 +53,7 @@ class PackageIconPanel extends ImagePanel {
 }
 
 class CenteredText extends JLabel {
-    final String text;
+    private final String text;
     CenteredText(String text){
         super(text);
         setFont(new Font("Comic Sans MS", Font.BOLD, sizeRectCurrent));
@@ -87,7 +75,7 @@ class CenteredText extends JLabel {
         if (drawImg) setVisible(true);
     }
 
-    float iter = 0;
+    private float iter = -5;
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -105,7 +93,6 @@ class CenteredText extends JLabel {
 
             if (iter < 0) {
                 iter += 0.02f;
-                showIndex = 0;
             } else if (iter < text.length()-showAtTime) {
                 iter += 0.01f;
                 showIndex = (int) iter;
@@ -115,7 +102,6 @@ class CenteredText extends JLabel {
                     showIndex = text.length()-showAtTime;
                 } else {
                     iter = -5;
-                    showIndex = 0;
                 }
             }
 

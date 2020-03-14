@@ -6,6 +6,11 @@
       <change beforePath="$PROJECT_DIR$/src/HealthBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HealthBar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/IconPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IconPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainPackagePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainPackagePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PackageRow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PackageRow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TopBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TopBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screenReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screenReader.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
