@@ -105,6 +105,7 @@ class CenteredText extends JLabel {
                 setFont(new Font("Comic Sans MS", Font.BOLD, sizeRectCurrent));
                 repaint();
             } else {
+                iter = 0;
                 setVisible(false);
             }
         }
