@@ -1,9 +1,12 @@
+import javafx.animation.Timeline;
 import org.xml.sax.SAXException;
 
 import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 class MainWindow {
     private JFrame frame;
@@ -32,9 +35,11 @@ class MainWindow {
         mainPanel.add(mainPackagePanel);
 
         try {
-            TimeLineRecord[] timeLineRecords = ScreenReader.getTimeLineRecords("screenTime.xml");
-            for (int i = 0; i < 10; i++) {
-                System.out.println(timeLineRecords[i]);
+            HashMap<String, ArrayList<TimeLineRecord>> timeLineRecords = ScreenReader.getAggregateTimeLineRecords("screenTime.xml");
+            ArrayList<TimeLineRecord> discordUsage = timeLineRecords.get("com.discord");
+
+            for (int i = 0; i < discordUsage.size(); i++) {
+                System.out.println(discordUsage.get(i));
             }
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();

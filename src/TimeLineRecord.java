@@ -15,7 +15,11 @@ class TimeLineRecord {
         packageName = name;
     }
 
-    public void setClassName(String className) {
+    public String getPackageName() {
+        return packageName;
+    }
+
+    void setClassName(String className) {
         this.className = className;
     }
 

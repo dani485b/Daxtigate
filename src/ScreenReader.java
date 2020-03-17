@@ -116,7 +116,22 @@ class ScreenReader {
         return foundTimeLineRecords.toArray(new TimeLineRecord[0]);
     }
 
+    static HashMap<String, ArrayList<TimeLineRecord>> getAggregateTimeLineRecords(String filepath) throws ParserConfigurationException, IOException, SAXException {
+        TimeLineRecord[] timeLineRecords = getTimeLineRecords(filepath);
+        HashMap<String, ArrayList<TimeLineRecord>> aggregateRecords = new HashMap<>();
 
+        for (TimeLineRecord tlr : timeLineRecords) {
+            if (aggregateRecords.containsKey(tlr.getPackageName())) {
+                aggregateRecords.get(tlr.getPackageName()).add(tlr);
+            } else {
+                ArrayList<TimeLineRecord> startOfArray = new ArrayList<>();
+                startOfArray.add(tlr);
+                aggregateRecords.put(tlr.getPackageName(), startOfArray);
+            }
+        }
+
+        return aggregateRecords;
+    }
 }
 
 class TimeLineRecordReadSample {
