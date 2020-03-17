@@ -1,5 +1,9 @@
+import org.xml.sax.SAXException;
+
 import javax.swing.*;
+import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
+import java.io.IOException;
 
 class MainWindow {
     private JFrame frame;
@@ -26,6 +30,15 @@ class MainWindow {
 
         MainPackagePanel mainPackagePanel = new MainPackagePanel();
         mainPanel.add(mainPackagePanel);
+
+        try {
+            TimeLineRecord[] timeLineRecords = ScreenReader.getTimeLineRecords("screenTime.xml");
+            for (int i = 0; i < 10; i++) {
+                System.out.println(timeLineRecords[i]);
+            }
+        } catch (ParserConfigurationException | IOException | SAXException e) {
+            e.printStackTrace();
+        }
     }
 
     void run(){

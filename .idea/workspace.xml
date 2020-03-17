@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="092aae32-fdfe-422e-9b87-f742c3070de7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/IconPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IconPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TimeLine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TimeLineRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screenTime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/screenTime.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screenReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ScreenReader.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
