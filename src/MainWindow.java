@@ -31,7 +31,7 @@ class MainWindow {
         HealthBar healthBar = new HealthBar();
         mainPanel.add(healthBar);
 
-        MainPackagePanel mainPackagePanel = new MainPackagePanel();
+        MainPackagePanel mainPackagePanel = new MainPackagePanel(healthBar);
         mainPanel.add(mainPackagePanel);
     }
 

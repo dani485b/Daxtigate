@@ -11,19 +11,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainPackagePanel extends JPanel {
+    HealthBar healthBar = null;
+
+    //Stuff
     private float scrollOffsetY = 0;
     private float zoomScale = 5f;
     private float dragX = 0f;
 
+    //Stuff
     private ArrayList<PackageRow> componentList = new ArrayList<>();
     static final int ROWHEIGHT = 70;
     HashMap<String, ArrayList<TimeLineRecord>> timeLineRecords;
 
+    //Stuff
     private Point origin = new Point(0,0);
     private Point mousePt;
-    MainPackagePanel(){
+    MainPackagePanel(HealthBar hb){
+        healthBar = hb;
         setLayout(null);
         setBackground(new Color(67, 67, 67));
+        healthBar.setMainPackagePanel(this);
 
         try {
             timeLineRecords = ScreenReader.getAggregateTimeLineRecords("screenTime.xml");
@@ -45,6 +52,8 @@ public class MainPackagePanel extends JPanel {
                 component.revalidate();
                 component.repaint();
             }
+
+            healthBar.repaint();
         });
 
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -72,6 +81,8 @@ public class MainPackagePanel extends JPanel {
                     component.revalidate();
                     component.repaint();
                 }
+
+                healthBar.repaint();
             }
         });
     }
@@ -80,6 +91,10 @@ public class MainPackagePanel extends JPanel {
         float heightMax = getComponentCount()*ROWHEIGHT;
         heightMax -= getHeight();
         this.scrollOffsetY = Math.max(Math.min(scrollOffsetY, 0), -heightMax);
+    }
+
+    public void setHealthBar(HealthBar healthBar) {
+        this.healthBar = healthBar;
     }
 
     float getScrollOffsetY() {

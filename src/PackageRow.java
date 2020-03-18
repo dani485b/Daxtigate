@@ -36,7 +36,7 @@ public class PackageRow extends JPanel {
         g2.fill(new Rectangle2D.Double(0,0, getBounds().height, getBounds().height));
 
         g2.setPaint(new Color(143, 20, 130));
-        g2.fill(new RoundRectangle2D.Double(ICON_SIZE+cornerSize+1000+mpp.getDragX(), squareHeight/2f, squareWidth, squareHeight, cornerSize, cornerSize));
+        g2.fill(new RoundRectangle2D.Double(cornerSize+1000+mpp.getDragX(), squareHeight/2f, squareWidth, squareHeight, cornerSize, cornerSize));
 
         super.paintComponent(g);
     }
