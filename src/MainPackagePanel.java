@@ -86,7 +86,7 @@ public class MainPackagePanel extends JPanel {
         return scrollOffsetY;
     }
 
-    private float getZoomScale() {
+    float getZoomScale() {
         return zoomScale;
     }
 
@@ -94,7 +94,7 @@ public class MainPackagePanel extends JPanel {
         this.zoomScale = Math.min(Math.max(zoomScale, 0.5f), 5f);
     }
 
-    private float getDragX() {
+    float getDragX() {
         return dragX;
     }
 

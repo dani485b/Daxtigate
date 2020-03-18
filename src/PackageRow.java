@@ -26,8 +26,9 @@ public class PackageRow extends JPanel {
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(0.0f));
+        MainPackagePanel mpp = (MainPackagePanel)getParent();
 
-        int squareWidth = 1280;
+        int squareWidth = (int)(mpp.getZoomScale()*50)+100;
         int squareHeight = 32;
         int cornerSize = 10;
 
@@ -35,7 +36,7 @@ public class PackageRow extends JPanel {
         g2.fill(new Rectangle2D.Double(0,0, getBounds().height, getBounds().height));
 
         g2.setPaint(new Color(143, 20, 130));
-        g2.fill(new RoundRectangle2D.Double(ICON_SIZE+cornerSize+10, squareHeight/2f, squareWidth, squareHeight, cornerSize, cornerSize));
+        g2.fill(new RoundRectangle2D.Double(ICON_SIZE+cornerSize+1000+mpp.getDragX(), squareHeight/2f, squareWidth, squareHeight, cornerSize, cornerSize));
 
         super.paintComponent(g);
     }
