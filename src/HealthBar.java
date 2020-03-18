@@ -30,7 +30,7 @@ public class HealthBar extends JPanel {
     void setMainPackagePanel(MainPackagePanel mainPackagePanel) {
         this.mainPackagePanel = mainPackagePanel;
 
-        /*try {
+        try {
             HealthRecordReadSample[] hrrs = HealthExtractor.getHealthReadSamples("healthData.xml");
             for (int i = 0; i < hrrs.length; i++) {
                 TimeLineRecordPanel timeLineRecordPanel = new TimeLineRecordPanel(hrrs[i], mainPackagePanel);
@@ -38,7 +38,7 @@ public class HealthBar extends JPanel {
             }
         } catch (ParserConfigurationException | IOException | SAXException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     @Override

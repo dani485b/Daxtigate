@@ -21,8 +21,8 @@ public class PackageRow extends JPanel {
         PackageIconPanel iconPanel = new PackageIconPanel(packageName);
         add(iconPanel);
 
-        for (int i = 0; i < timeLineRecords.size(); i++) {
-            TimeLineRecordPanel timeLineRecordPanel = new TimeLineRecordPanel(timeLineRecords.get(i), mpp);
+        for (TimeLineRecord timeLineRecord : timeLineRecords) {
+            TimeLineRecordPanel timeLineRecordPanel = new TimeLineRecordPanel(timeLineRecord, mpp);
             add(timeLineRecordPanel);
         }
     }

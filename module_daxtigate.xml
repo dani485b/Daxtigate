@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_daxtigate" default="compile.module.daxtigate">
+  <dirname property="module.daxtigate.basedir" file="${ant.file.module_daxtigate}"/>
+  
+  <property name="module.jdk.home.daxtigate" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.daxtigate" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.daxtigate" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.daxtigate" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="daxtigate.output.dir" value="${module.daxtigate.basedir}/out/production/Daxtigate"/>
+  <property name="daxtigate.testoutput.dir" value="${module.daxtigate.basedir}/out/test/Daxtigate"/>
+  
+  <path id="daxtigate.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="daxtigate.module.production.classpath">
+    <path refid="${module.jdk.classpath.daxtigate}"/>
+  </path>
+  
+  <path id="daxtigate.runtime.production.module.classpath">
+    <pathelement location="${daxtigate.output.dir}"/>
+  </path>
+  
+  <path id="daxtigate.module.classpath">
+    <path refid="${module.jdk.classpath.daxtigate}"/>
+    <pathelement location="${daxtigate.output.dir}"/>
+  </path>
+  
+  <path id="daxtigate.runtime.module.classpath">
+    <pathelement location="${daxtigate.testoutput.dir}"/>
+    <pathelement location="${daxtigate.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.daxtigate">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.daxtigate">
+    <patternset refid="excluded.from.module.daxtigate"/>
+  </patternset>
+  
+  <path id="daxtigate.module.sourcepath">
+    <dirset dir="${module.daxtigate.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.daxtigate" depends="compile.module.daxtigate.production,compile.module.daxtigate.tests" description="Compile module Daxtigate"/>
+  
+  <target name="compile.module.daxtigate.production" depends="register.custom.compilers" description="Compile module Daxtigate; production classes">
+    <mkdir dir="${daxtigate.output.dir}"/>
+    <javac2 destdir="${daxtigate.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.daxtigate}/javac">
+      <compilerarg line="${compiler.args.daxtigate}"/>
+      <bootclasspath refid="daxtigate.module.bootclasspath"/>
+      <classpath refid="daxtigate.module.production.classpath"/>
+      <src refid="daxtigate.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.daxtigate"/>
+    </javac2>
+    
+    <copy todir="${daxtigate.output.dir}">
+      <fileset dir="${module.daxtigate.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.daxtigate.tests" depends="register.custom.compilers,compile.module.daxtigate.production" description="compile module Daxtigate; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.daxtigate" description="cleanup module">
+    <delete dir="${daxtigate.output.dir}"/>
+    <delete dir="${daxtigate.testoutput.dir}"/>
+  </target>
+</project>

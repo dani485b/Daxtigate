@@ -146,7 +146,6 @@ public class MainPackagePanel extends JPanel {
 
         Point p = getMousePosition();
         float stuff = ((p.x-getDragX())/getZoomScale());
-        System.out.println(stuff);
         g.setColor(Color.white);
         g.drawString(DateFormat.getDateTimeInstance().format(stuff*1000+1584530000000L), p.x, p.y);
         //System.out.println("Test");

@@ -97,10 +97,16 @@ class TimeLineRecordPanel extends JPanel {
             } else {
                 g2.setColor(new Color(183, 57, 53));
             }
+        } else if (record instanceof HealthRecordReadSample) {
+            g2.setColor(new Color(51, 131, 38));
         }
 
         if(hoverOver) {
-            g2.setColor(new Color(183, 15, 113));
+            if (record instanceof HealthRecordReadSample) {
+                g2.setColor(new Color(46,150, 36));
+            } else {
+                g2.setColor(new Color(183, 15, 113));
+            }
         }
 
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 5, 5);
@@ -108,7 +114,11 @@ class TimeLineRecordPanel extends JPanel {
         if (hoverOver) {
             g2.setColor(Color.white);
             g.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-            g.drawString(String.valueOf((record.getTimeEnd()-record.getTimeStart())/1000f/60f), getWidth()/2,20);
+            String showThis = "";
+            if (record instanceof HealthRecordReadSample)
+                showThis += ((HealthRecordReadSample)record).value + ":" + ((HealthRecordReadSample)record).type.substring(11);
+            showThis += " - " + (record.getTimeEnd() - record.getTimeStart()) / 1000f / 60f +"m";
+            g.drawString(showThis, 0,20);
         }
     }
 }
