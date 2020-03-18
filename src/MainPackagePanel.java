@@ -3,20 +3,30 @@ import org.xml.sax.SAXException;
 import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainPackagePanel extends JPanel {
     private float scrollOffsetY = 0;
+    private float zoomScale = 5f;
+    private float dragX = 0f;
+
     private ArrayList<PackageRow> componentList = new ArrayList<>();
     static final int ROWHEIGHT = 70;
+    HashMap<String, ArrayList<TimeLineRecord>> timeLineRecords;
+
+    private Point origin = new Point(0,0);
+    private Point mousePt;
     MainPackagePanel(){
         setLayout(null);
         setBackground(new Color(67, 67, 67));
 
         try {
-            HashMap<String, ArrayList<TimeLineRecord>> timeLineRecords = ScreenReader.getAggregateTimeLineRecords("screenTime.xml");
+            timeLineRecords = ScreenReader.getAggregateTimeLineRecords("screenTime.xml");
             String[] packageNames = ScreenReader.getPackageNamesSortedByUsage(timeLineRecords);
 
             for (int i = 0; i < packageNames.length; i++) {
@@ -29,12 +39,39 @@ public class MainPackagePanel extends JPanel {
         }
 
         addMouseWheelListener(e -> {
-            setScrollOffsetY(getScrollOffsetY()+e.getWheelRotation()*-10);
+            setZoomScale(getZoomScale()+e.getWheelRotation()*-0.1f);
 
             for (PackageRow component : componentList) {
-                component.updateLocationY();
                 component.revalidate();
                 component.repaint();
+            }
+        });
+
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                mousePt = e.getPoint();
+                repaint();
+            }
+        });
+
+        addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                int dx = e.getX() - mousePt.x;
+                int dy = e.getY() - mousePt.y;
+                origin.setLocation(origin.x + dx, origin.y + dy);
+                mousePt = e.getPoint();
+
+                setScrollOffsetY(getScrollOffsetY()+dy);
+                setDragX(getDragX()+dx);
+
+                for (PackageRow component : componentList) {
+                    component.updateLocationY();
+                    component.revalidate();
+                    component.repaint();
+                }
             }
         });
     }
@@ -49,6 +86,22 @@ public class MainPackagePanel extends JPanel {
         return scrollOffsetY;
     }
 
+    private float getZoomScale() {
+        return zoomScale;
+    }
+
+    private void setZoomScale(float zoomScale) {
+        this.zoomScale = Math.min(Math.max(zoomScale, 0.5f), 5f);
+    }
+
+    private float getDragX() {
+        return dragX;
+    }
+
+    private void setDragX(float dragX) {
+        this.dragX = Math.min(Math.max(dragX, -1000), 0);
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -59,15 +112,18 @@ public class MainPackagePanel extends JPanel {
         Stroke dashedSmall = new BasicStroke(0.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
         g2.setColor(new Color(100,100,100));
 
-        for (int i = ROWHEIGHT+50; i < getWidth(); i += 50) {
-            if((i-ROWHEIGHT)%200==0) {
-                g2.setStroke(dashedThick);
-            } else {
-                g2.setStroke(dashedSmall);
-            }
+        //System.out.println(zoomScale);
+        float pixelAmount = zoomScale*50;
+        float centerX = ((getWidth()-ROWHEIGHT)/2f)+ROWHEIGHT;
 
-            g2.drawLine(i, 0, i, getHeight());
-        }
+        for (int i = 0; i < 20; i++) {
+            //g2.setStroke(dashedThick);
+            g2.setStroke(dashedSmall);
+
+            int x = (int)(ROWHEIGHT+i*pixelAmount+dragX);
+
+            g2.drawLine(x, 0, x, getHeight());
+    }
         //System.out.println("Test");
     }
 }
