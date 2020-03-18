@@ -15,6 +15,14 @@ class TimeLineRecord {
         packageName = name;
     }
 
+    long getTimeStart() {
+        return timeStart;
+    }
+
+    long getTimeEnd() {
+        return timeEnd;
+    }
+
     String getPackageName() {
         return packageName;
     }

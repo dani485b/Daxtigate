@@ -5,6 +5,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainPackagePanel extends JPanel {
     private float scrollOffsetY = 0;
@@ -15,7 +16,8 @@ public class MainPackagePanel extends JPanel {
         setBackground(new Color(67, 67, 67));
 
         try {
-            String[] packageNames = ScreenReader.getPackageNames("screenTime.xml");
+            HashMap<String, ArrayList<TimeLineRecord>> timeLineRecords = ScreenReader.getAggregateTimeLineRecords("screenTime.xml");
+            String[] packageNames = ScreenReader.getPackageNamesSortedByUsage(timeLineRecords);
 
             for (int i = 0; i < packageNames.length; i++) {
                 PackageRow packRow = new PackageRow(packageNames[i], i);

@@ -33,17 +33,6 @@ class MainWindow {
 
         MainPackagePanel mainPackagePanel = new MainPackagePanel();
         mainPanel.add(mainPackagePanel);
-
-        try {
-            HashMap<String, ArrayList<TimeLineRecord>> timeLineRecords = ScreenReader.getAggregateTimeLineRecords("screenTime.xml");
-            ArrayList<TimeLineRecord> discordUsage = timeLineRecords.get("com.discord");
-
-            for (int i = 0; i < discordUsage.size(); i++) {
-                System.out.println(discordUsage.get(i));
-            }
-        } catch (ParserConfigurationException | IOException | SAXException e) {
-            e.printStackTrace();
-        }
     }
 
     void run(){

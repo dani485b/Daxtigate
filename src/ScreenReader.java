@@ -10,9 +10,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 class ScreenReader {
     static String[] getPackageNames(String filepath) throws ParserConfigurationException, IOException, SAXException {
@@ -41,6 +41,31 @@ class ScreenReader {
         }
 
         return foundPackageNames.toArray(new String[0]);
+    }
+
+    static String[] getPackageNamesSortedByUsage(HashMap<String, ArrayList<TimeLineRecord>> timeLineRecords) {
+        HashMap<String, Long> foundPackageNames = new HashMap<>();
+
+        for (String key : timeLineRecords.keySet()) {
+            ArrayList<TimeLineRecord> arrayList = timeLineRecords.get(key);
+            long val = 0;
+            for (TimeLineRecord timelineRecord : arrayList) {
+                val += timelineRecord.getTimeEnd() - timelineRecord.getTimeStart();
+            }
+
+            foundPackageNames.put(key, val);
+        }
+
+        String[] idk = new String[foundPackageNames.size()];
+
+        List<Map.Entry<String, Long>> list = new ArrayList<>(foundPackageNames.entrySet());
+        list.sort(Map.Entry.comparingByValue());
+
+        for (int i = 0; i < foundPackageNames.size(); i++) {
+            idk[foundPackageNames.size()-1-i] = list.get(i).getKey();
+        }
+
+        return idk;
     }
 
     static TimeLineRecordReadSample[] getTimeLineRReadSamples(String filepath) throws ParserConfigurationException, IOException, SAXException {
