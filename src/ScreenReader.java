@@ -1,3 +1,4 @@
+import javafx.animation.Timeline;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -42,9 +43,8 @@ class ScreenReader {
         return foundPackageNames.toArray(new String[0]);
     }
 
-    static TimeLineRecord[] getTimeLineRecords(String filepath) throws ParserConfigurationException, IOException, SAXException {
-        ArrayList<TimeLineRecord> foundTimeLineRecords = new ArrayList<>();
-        HashMap<String, TimeLineRecordReadSample> existingClassNames = new HashMap<>();
+    static TimeLineRecordReadSample[] getTimeLineRReadSamples(String filepath) throws ParserConfigurationException, IOException, SAXException {
+        ArrayList<TimeLineRecordReadSample> foundTimeLineReadRecords = new ArrayList<>();
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -57,8 +57,6 @@ class ScreenReader {
         NodeList nList = document.getElementsByTagName("Record");
         //System.out.println("============================");
 
-        long lastTimeStamp = 0;
-
         for (int temp = 0; temp < nList.getLength(); temp++) {
             Node node = nList.item(temp);
             //System.out.println("");    //Just a separator
@@ -66,37 +64,65 @@ class ScreenReader {
                 //Print each employee's detail
                 Element eElement = (Element) node;
 
-                String className = eElement.getAttribute("className");
                 TimeLineRecordReadSample tlrrs = new TimeLineRecordReadSample();
                 tlrrs.type = eElement.getAttribute("type");
                 tlrrs.timeStamp = Long.parseLong(eElement.getAttribute("timeStamp"));
                 tlrrs.packageName = eElement.getAttribute("packageName");
+                tlrrs.className = eElement.getAttribute("className");
+                foundTimeLineReadRecords.add(tlrrs);
 
-                if (existingClassNames.containsKey(className)) { //Already present - Should record
+                /*if (tlrrs.type.equals("ACTIVITY_PAUSED")){
+                    foundTimeLineReadRecords.add(tlrrs);
+                }*/
+            }
+        }
 
-                    TimeLineRecord tlr = new TimeLineRecord(
-                            tlrrs.packageName,
-                            existingClassNames.get(className).timeStamp,
-                            tlrrs.timeStamp
-                            );
+        return foundTimeLineReadRecords.toArray(new TimeLineRecordReadSample[0]);
+    }
 
-                    if (tlrrs.type.equals("ACTIVITY_STOPPED")){
-                        tlr.setState(ACTIVITY_STATE.inactive); //Is the stop of an inactive activity
-                    } else {
-                        tlr.setState(ACTIVITY_STATE.active); //Is the stop of an active activity
-                    }
+    static TimeLineRecord[] getTimeLineRecords(String filepath) throws ParserConfigurationException, IOException, SAXException {
+        ArrayList<TimeLineRecord> foundTimeLineRecords = new ArrayList<>();
+        HashMap<String, TimeLineRecordReadSample> existingClassNames = new HashMap<>();
 
-                    tlr.setClassName(className);
+        TimeLineRecordReadSample[] timeLineRecordReadSamples = getTimeLineRReadSamples(filepath);
+        long firstTimeStamp = timeLineRecordReadSamples[0].timeStamp;
+        long lastTimeStamp = timeLineRecordReadSamples[timeLineRecordReadSamples.length-1].timeStamp;
 
-                    foundTimeLineRecords.add(tlr);
-                    existingClassNames.remove(className);
-                } else { //Otherwise, put in map
-                    if (!tlrrs.type.equals("ACTIVITY_STOPPED"))
-                        existingClassNames.put(className, tlrrs);
+        for (TimeLineRecordReadSample tlrrs : timeLineRecordReadSamples) {
+            if (existingClassNames.containsKey(tlrrs.className)) { //Already present - Should record
+                TimeLineRecordReadSample prevSample = existingClassNames.get(tlrrs.className);
+                existingClassNames.replace(tlrrs.className, tlrrs);
+
+                TimeLineRecord tlr = new TimeLineRecord(
+                        tlrrs.packageName,
+                        prevSample.timeStamp,
+                        tlrrs.timeStamp
+                );
+
+                if (tlrrs.type.equals("ACTIVITY_STOPPED")){
+                    tlr.setState(ACTIVITY_STATE.inactive); //Is the stop of an inactive activity
+                    existingClassNames.remove(tlrrs.className);
+                } else if (tlrrs.type.equals("ACTIVITY_RESUMED")) {
+                    tlr.setState(ACTIVITY_STATE.inactive); //Is the stop of an active activity
+                } else {
+                    tlr.setState(ACTIVITY_STATE.active); //Is the stop of an active activity
                 }
 
-                if (temp == nList.getLength()-1){
-                    lastTimeStamp = tlrrs.timeStamp;
+                tlr.setClassName(tlrrs.className);
+
+                foundTimeLineRecords.add(tlr);
+
+            } else { //Otherwise, put in map
+                if (tlrrs.type.equals("ACTIVITY_RESUMED"))
+                    existingClassNames.put(tlrrs.className, tlrrs);
+                else {
+                    TimeLineRecord tlr = new TimeLineRecord (
+                            tlrrs.packageName,
+                            firstTimeStamp,
+                            tlrrs.timeStamp
+                    );
+
+                    tlr.setClassName(tlrrs.className);
                 }
             }
         }
@@ -136,6 +162,7 @@ class ScreenReader {
 
 class TimeLineRecordReadSample {
     String packageName;
+    String className;
     String type;
     long timeStamp;
 }

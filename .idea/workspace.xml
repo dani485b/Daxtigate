@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="092aae32-fdfe-422e-9b87-f742c3070de7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/screenTime.xml" beforeDir="false" afterPath="$PROJECT_DIR$/screenTime.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ScreenReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ScreenReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TimeLineRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TimeLineRecord.java" afterDir="false" />
     </list>

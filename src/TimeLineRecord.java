@@ -6,7 +6,7 @@ class TimeLineRecord {
     private String className = "N/A";
     private long timeStart;
     private long timeEnd;
-    private ACTIVITY_STATE state = ACTIVITY_STATE.inactive;
+    private ACTIVITY_STATE state = ACTIVITY_STATE.unknown;
 
 
     TimeLineRecord(String name, long timeStart, long timeEnd) {
@@ -15,7 +15,7 @@ class TimeLineRecord {
         packageName = name;
     }
 
-    public String getPackageName() {
+    String getPackageName() {
         return packageName;
     }
 
@@ -48,4 +48,5 @@ class TimeLineRecordPanel extends JPanel {
 enum ACTIVITY_STATE {
     active,
     inactive,
+    unknown
 }

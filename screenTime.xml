@@ -517,37 +517,37 @@
   <Record type="ACTIVITY_RESUMED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197527085"/>
   <Record type="ACTIVITY_PAUSED" packageName="com.hotornot.app" className="o.cBB" timeStamp="1583197527105"/>
   <Record type="ACTIVITY_STOPPED" packageName="com.hotornot.app" className="o.cBB" timeStamp="1583197527158"/>
-  <Record type="ACTIVITY_PAUSED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197529283"/>
-  <Record type="ACTIVITY_RESUMED" packageName="com.discord" className="com.discord.app.AppActivity$Main" timeStamp="1583197529306"/>
-  <Record type="ACTIVITY_STOPPED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197529835"/>
-  <Record type="ACTIVITY_PAUSED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197529980"/>
-  <Record type="ACTIVITY_RESUMED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197530816"/>
-  <Record type="ACTIVITY_PAUSED" packageName="com.discord" className="com.discord.app.AppActivity$Main" timeStamp="1583197530837"/>
-  <Record type="ACTIVITY_STOPPED" packageName="com.discord" className="com.discord.app.AppActivity$Main" timeStamp="1583197530876"/>
-  <Record type="ACTIVITY_PAUSED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197531291"/>
-  <Record type="ACTIVITY_RESUMED" packageName="com.discord" className="com.discord.app.AppActivity$Main" timeStamp="1583197531297"/>
-  <Record type="ACTIVITY_STOPPED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197531654"/>
-  <Record type="ACTIVITY_PAUSED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197536385"/>
-  <Record type="ACTIVITY_RESUMED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197537694"/>
-  <Record type="ACTIVITY_PAUSED" packageName="com.discord" className="com.discord.app.AppActivity$Main" timeStamp="1583197537732"/>
-  <Record type="ACTIVITY_PAUSED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197537735"/>
-  <Record type="ACTIVITY_RESUMED" packageName="com.discord" className="com.discord.app.AppActivity$Main" timeStamp="1583197537739"/>
-  <Record type="ACTIVITY_STOPPED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197538050"/>
-  <Record type="ACTIVITY_PAUSED" packageName="com.discord" className="com.discord.app.AppActivity$Main" timeStamp="1583197538646"/>
-  <Record type="ACTIVITY_RESUMED" packageName="com.discord" className="com.discord.app.AppActivity" timeStamp="1583197538655"/>
-  <Record type="ACTIVITY_STOPPED" packageName="com.discord" className="com.discord.app.AppActivity$Main" timeStamp="1583197539131"/>
-  <Record type="ACTIVITY_PAUSED" packageName="com.discord" className="com.discord.app.AppActivity" timeStamp="1583197543231"/>
-  <Record type="ACTIVITY_RESUMED" packageName="com.discord" className="com.discord.app.AppActivity$Main" timeStamp="1583197543232"/>
-  <Record type="ACTIVITY_STOPPED" packageName="com.discord" className="com.discord.app.AppActivity" timeStamp="1583197543684"/>
-  <Record type="ACTIVITY_PAUSED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197544156"/>
-  <Record type="ACTIVITY_RESUMED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197544934"/>
-  <Record type="ACTIVITY_PAUSED" packageName="com.discord" className="com.discord.app.AppActivity$Main" timeStamp="1583197544960"/>
-  <Record type="ACTIVITY_STOPPED" packageName="com.discord" className="com.discord.app.AppActivity$Main" timeStamp="1583197544996"/>
-  <Record type="ACTIVITY_PAUSED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197548682"/>
-  <Record type="ACTIVITY_RESUMED" packageName="com.daxode.daxtrack" className="com.daxode.daxtrack.MainActivity" timeStamp="1583197548782"/>
-  <Record type="ACTIVITY_PAUSED" packageName="com.daxode.daxtrack" className="com.daxode.daxtrack.MainActivity" timeStamp="1583197549350"/>
+  <Record type="ACTIVITY_PAUSED"  packageName="net.oneplus.launcher"  className="net.oneplus.launcher.Launcher"     timeStamp="1583197529283"/>
+  <Record type="ACTIVITY_RESUMED" packageName="com.discord"           className="com.discord.app.AppActivity$Main"  timeStamp="1583197529306"/>
+  <Record type="ACTIVITY_STOPPED" packageName="net.oneplus.launcher"  className="net.oneplus.launcher.Launcher"     timeStamp="1583197529835"/>
+  <Record type="ACTIVITY_PAUSED"  packageName="net.oneplus.launcher"  className="net.oneplus.launcher.Launcher"     timeStamp="1583197529980"/>
+  <Record type="ACTIVITY_RESUMED" packageName="net.oneplus.launcher"  className="net.oneplus.launcher.Launcher"     timeStamp="1583197530816"/>
+  <Record type="ACTIVITY_PAUSED"  packageName="com.discord"           className="com.discord.app.AppActivity$Main"  timeStamp="1583197530837"/>
+  <Record type="ACTIVITY_STOPPED" packageName="com.discord"           className="com.discord.app.AppActivity$Main"  timeStamp="1583197530876"/>
+  <Record type="ACTIVITY_PAUSED"  packageName="net.oneplus.launcher"  className="net.oneplus.launcher.Launcher"     timeStamp="1583197531291"/>
+  <Record type="ACTIVITY_RESUMED" packageName="com.discord"           className="com.discord.app.AppActivity$Main"  timeStamp="1583197531297"/>
+  <Record type="ACTIVITY_STOPPED" packageName="net.oneplus.launcher"  className="net.oneplus.launcher.Launcher"     timeStamp="1583197531654"/>
+  <Record type="ACTIVITY_PAUSED"  packageName="net.oneplus.launcher"  className="net.oneplus.launcher.Launcher"     timeStamp="1583197536385"/>
+  <Record type="ACTIVITY_RESUMED" packageName="net.oneplus.launcher"  className="net.oneplus.launcher.Launcher"     timeStamp="1583197537694"/>
+  <Record type="ACTIVITY_PAUSED"  packageName="com.discord"           className="com.discord.app.AppActivity$Main"  timeStamp="1583197537732"/>
+  <Record type="ACTIVITY_PAUSED"  packageName="net.oneplus.launcher"  className="net.oneplus.launcher.Launcher"     timeStamp="1583197537735"/>
+  <Record type="ACTIVITY_RESUMED" packageName="com.discord"           className="com.discord.app.AppActivity$Main"  timeStamp="1583197537739"/>
+  <Record type="ACTIVITY_STOPPED" packageName="net.oneplus.launcher"  className="net.oneplus.launcher.Launcher"     timeStamp="1583197538050"/>
+  <Record type="ACTIVITY_PAUSED"  packageName="com.discord"           className="com.discord.app.AppActivity$Main"  timeStamp="1583197538646"/>
+  <Record type="ACTIVITY_RESUMED" packageName="com.discord"           className="com.discord.app.AppActivity"       timeStamp="1583197538655"/>
+  <Record type="ACTIVITY_STOPPED" packageName="com.discord"           className="com.discord.app.AppActivity$Main"  timeStamp="1583197539131"/>
+  <Record type="ACTIVITY_PAUSED"  packageName="com.discord"           className="com.discord.app.AppActivity"       timeStamp="1583197543231"/>
+  <Record type="ACTIVITY_RESUMED" packageName="com.discord"           className="com.discord.app.AppActivity$Main"  timeStamp="1583197543232"/>
+  <Record type="ACTIVITY_STOPPED" packageName="com.discord"           className="com.discord.app.AppActivity"       timeStamp="1583197543684"/>
+  <Record type="ACTIVITY_PAUSED"  packageName="net.oneplus.launcher"  className="net.oneplus.launcher.Launcher"     timeStamp="1583197544156"/>
+  <Record type="ACTIVITY_RESUMED" packageName="net.oneplus.launcher"  className="net.oneplus.launcher.Launcher"     timeStamp="1583197544934"/>
+  <Record type="ACTIVITY_PAUSED"  packageName="com.discord"           className="com.discord.app.AppActivity$Main"  timeStamp="1583197544960"/>
+  <Record type="ACTIVITY_STOPPED" packageName="com.discord"           className="com.discord.app.AppActivity$Main"  timeStamp="1583197544996"/>
+  <Record type="ACTIVITY_PAUSED"  packageName="net.oneplus.launcher"  className="net.oneplus.launcher.Launcher"     timeStamp="1583197548682"/>
+  <Record type="ACTIVITY_RESUMED" packageName="com.daxode.daxtrack"   className="com.daxode.daxtrack.MainActivity"  timeStamp="1583197548782"/>
+  <Record type="ACTIVITY_PAUSED"  packageName="com.daxode.daxtrack"   className="com.daxode.daxtrack.MainActivity"  timeStamp="1583197549350"/>
   <Record type="ACTIVITY_RESUMED" packageName="com.google.android.permissioncontroller" className="com.android.packageinstaller.permission.ui.GrantPermissionsActivity" timeStamp="1583197549350"/>
-  <Record type="ACTIVITY_PAUSED" packageName="com.google.android.permissioncontroller" className="com.android.packageinstaller.permission.ui.GrantPermissionsActivity" timeStamp="1583197549389"/>
+  <Record type="ACTIVITY_PAUSED"  packageName="com.google.android.permissioncontroller" className="com.android.packageinstaller.permission.ui.GrantPermissionsActivity" timeStamp="1583197549389"/>
   <Record type="ACTIVITY_RESUMED" packageName="com.daxode.daxtrack" className="com.daxode.daxtrack.MainActivity" timeStamp="1583197549391"/>
   <Record type="ACTIVITY_STOPPED" packageName="com.google.android.permissioncontroller" className="com.android.packageinstaller.permission.ui.GrantPermissionsActivity" timeStamp="1583197549422"/>
   <Record type="ACTIVITY_STOPPED" packageName="net.oneplus.launcher" className="net.oneplus.launcher.Launcher" timeStamp="1583197549424"/>
