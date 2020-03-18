@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -37,7 +38,7 @@ public class MainPackagePanel extends JPanel {
             String[] packageNames = ScreenReader.getPackageNamesSortedByUsage(timeLineRecords);
 
             for (int i = 0; i < packageNames.length; i++) {
-                PackageRow packRow = new PackageRow(packageNames[i], i);
+                PackageRow packRow = new PackageRow(packageNames[i], i, timeLineRecords.get(packageNames[i]),this);
                 add(packRow);
                 componentList.add(packRow);
             }
@@ -49,10 +50,12 @@ public class MainPackagePanel extends JPanel {
             setZoomScale(getZoomScale()+e.getWheelRotation()*-0.1f);
 
             for (PackageRow component : componentList) {
+                component.updateLocationY();
                 component.revalidate();
                 component.repaint();
             }
 
+            healthBar.update();
             healthBar.repaint();
         });
 
@@ -82,6 +85,7 @@ public class MainPackagePanel extends JPanel {
                     component.repaint();
                 }
 
+                healthBar.update();
                 healthBar.repaint();
             }
         });
@@ -106,7 +110,7 @@ public class MainPackagePanel extends JPanel {
     }
 
     private void setZoomScale(float zoomScale) {
-        this.zoomScale = Math.min(Math.max(zoomScale, 0.5f), 5f);
+        this.zoomScale = Math.min(Math.max(zoomScale, 0.01f), 20f);
     }
 
     float getDragX() {
@@ -114,7 +118,7 @@ public class MainPackagePanel extends JPanel {
     }
 
     private void setDragX(float dragX) {
-        this.dragX = Math.min(Math.max(dragX, -1000), 0);
+        this.dragX = Math.min(Math.max(dragX, -10000), 10000);
     }
 
     @Override
@@ -138,7 +142,13 @@ public class MainPackagePanel extends JPanel {
             int x = (int)(ROWHEIGHT+i*pixelAmount+dragX);
 
             g2.drawLine(x, 0, x, getHeight());
-    }
+        }
+
+        Point p = getMousePosition();
+        float stuff = ((p.x-getDragX())/getZoomScale());
+        System.out.println(stuff);
+        g.setColor(Color.white);
+        g.drawString(DateFormat.getDateTimeInstance().format(stuff*1000+1584530000000L), p.x, p.y);
         //System.out.println("Test");
     }
 }
